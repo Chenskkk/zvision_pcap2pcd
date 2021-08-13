@@ -77,18 +77,18 @@ void sample_offline_pointcloud(std::string lidar_ip = "192.168.10.108", int port
                 }
                 printf("GetPointCloud ok, frame number is %d, valid points %d.\n", i, point_valid);
                 pcl::PointCloud<pcl::PointXYZI>::Ptr  pcl_cloud = point_cloud_convert(pointcloud);
-                sensor_msgs::PointCloud2 pointCloudMsg;
-                pcl::toROSMsg(*pcl_cloud,pointCloudMsg);
+                // sensor_msgs::PointCloud2 pointCloudMsg;
+                // pcl::toROSMsg(*pcl_cloud,pointCloudMsg);
                 // pcl_conversions::moveFromPCL(pcl_cloud, pointCloudMsg);
-                pointCloudMsg.header.frame_id = "lidar_front";
-                ros::Time timestamp;
-                timestamp.sec = pointcloud.points[i].timestamp_ns/1000000000;
-                timestamp.nsec = pointcloud.points[i].timestamp_ns%1000000000;
-                std::cout << std::to_string(pointcloud.points[i].timestamp_ns) << std::endl;
-                pointCloudMsg.header.stamp = timestamp;
-                if(timestamp > ros::TIME_MIN) bag.write("/ns1/zvision_lidar_points",timestamp,pointCloudMsg);
-                // pcl::PCDWriter w;
-                // w.writeBinaryCompressed(pcd_path + std::to_string(pointcloud.points[0].timestamp_ns) + ".pcd", *pcl_cloud);
+                // pointCloudMsg.header.frame_id = "lidar_front";
+                // ros::Time timestamp;
+                // timestamp.sec = pointcloud.points[i].timestamp_ns/1000000000;
+                // timestamp.nsec = pointcloud.points[i].timestamp_ns%1000000000;
+                // std::cout << std::to_string(pointcloud.points[i].timestamp_ns) << std::endl;
+                // pointCloudMsg.header.stamp = timestamp;
+                // if(timestamp > ros::TIME_MIN) bag.write("/ns1/zvision_lidar_points",timestamp,pointCloudMsg);
+                pcl::PCDWriter w;
+                w.writeBinaryCompressed(pcd_path + std::to_string(pointcloud.points[0].timestamp_ns) + ".pcd", *pcl_cloud);
 #ifdef USING_PCL_VISUALIZATION
                 pcl::PointCloud<pcl::PointXYZRGBA>::Ptr  pcl_cloud = point_cloud_convert(pointcloud);
                 if (!(viewer->updatePointCloud(pcl_cloud, "cloud")))
@@ -112,7 +112,7 @@ int main() {
     std::string inputdir_("/media/z/data/xxxx");
     std::string pcd_path_("/home/z/Desktop/pcds/");
 
-    bag.open("test.bag",rosbag::bagmode::Write);
+    // bag.open("test.bag",rosbag::bagmode::Write);
 
     boost::filesystem::directory_iterator end_iter;
     if (boost::filesystem::is_directory(inputdir_))
