@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -rdynamic CMakeFiles/lidarconfig_sample.dir/main.cpp.o -o lidarconfig_sample  ../../sdk/libzvision_sdk_static.a 

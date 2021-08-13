@@ -1,0 +1,2 @@
+/usr/bin/ar qc libzvision_sdk_static.a CMakeFiles/zvision_sdk_static.dir/src/lidar_tools.cpp.o CMakeFiles/zvision_sdk_static.dir/src/packet.cpp.o CMakeFiles/zvision_sdk_static.dir/src/packet_source.cpp.o CMakeFiles/zvision_sdk_static.dir/src/point_cloud.cpp.o CMakeFiles/zvision_sdk_static.dir/src/print.cpp.o CMakeFiles/zvision_sdk_static.dir/src/client.cpp.o CMakeFiles/zvision_sdk_static.dir/src/define.cpp.o
+/usr/bin/ranlib libzvision_sdk_static.a
